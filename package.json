@@ -1,0 +1,14 @@
+{
+  "name": "error-handler",
+  "version": "1.0.0",
+  "description": "Tratamento de Errors com Bluebird",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sils S. Brasil",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}
