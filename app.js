@@ -24,26 +24,30 @@ class HttpException extends Exception {
 //     .catch(Exception, err => console.log(err))
 //     .catch(err => console.log(err))
 
+/**
+ * Spread
+ */
+const fn1 = () => 'Fisrt'
+const fn2 = () => 'Second'
+
+Promise.all([
+ fn1(),
+ fn2()
+]).spread((one, two) => {
+ console.log('List:', one, 'and', two)
+});
+
 
 /**
- * Promisefy
+ * Coroutine
  */
-const cbFromHell = (anyString, callback, errorback) => {
-    if ( typeof anyString === 'string' )
-        callback( anyString + ' - callback sucess' )
-    else
-        errorback( 'Errorback on ar - :(' )
-}
 
-cbFromHell('My big TEXT', res => console.log(res), err => console.log(err))
-// result: My big TEXT - callback sucess
-cbFromHell(2, res => console.log(res), err => console.log(err))
-// result: 'Errorback on ar - :('
+const gen = Promise.coroutine(function* (age) {
+    const a = yield Promise.resolve('Silas')
+    const b = yield Promise.resolve('Brasil')
 
-// Now start the MAGIC
+    return a + ' ' + b + ' - age: ' + (age ? age : '18')
+})
 
-// Ainda ão sei fazer direito
-
- /**
-  * Coroutine
-  */
+gen().then(fullname => console.log(fullname))
+gen(25).then(fullname => console.log(fullname))
